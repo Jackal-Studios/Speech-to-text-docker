@@ -127,3 +127,18 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#API key
+secrets/
+
+
+#db/my_ids.pickle
+# exclude everything
+db/*
+
+# exception to the rule
+!db/.gitkeep 
+
+
+#pycharm idea files
+.idea
