@@ -62,6 +62,8 @@ def removetempfile(path):
 
 def onelistening(chosen_language):
     print("onelistening function reached")
+    if(os.path.isfile(temporary_folder_path + tempfilename)):
+        removetempfile(temporary_folder_path + tempfilename)
     os.system('ffmpeg -i '+temporary_folder_path+tempfilename2+' -ac 1 '+temporary_folder_path+tempfilename)
 
 
