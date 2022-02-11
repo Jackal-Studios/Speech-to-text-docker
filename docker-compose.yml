@@ -1,15 +1,15 @@
 version: "3.8"
 services:
-  visuallyimpairedbot:
+  speechtotextbot:
     build: .
     restart: unless-stopped
     command: "bash -c 'mount'"
     tmpfs: 
-      - /home/visuallyimpairedbot/ramdisk
+      - /home/speechtotextbot/ramdisk
     volumes:
-      - ./pythonfiles/:/home/visuallyimpairedbot/pythonfiles/
-      - ./db/:/home/visuallyimpairedbot/db/
-      - ./secrets/:/home/visuallyimpairedbot/secrets/
+      - ./pythonfiles/:/home/speechtotextbot/pythonfiles/
+      - ./db/:/home/speechtotextbot/db/
+      - ./secrets/:/home/speechtotextbot/secrets/
     command: bash -c "chmod -R 666 ./ramdisk"
     command: bash -c "python3 -u ./pythonfiles/main.py"
     
