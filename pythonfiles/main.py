@@ -29,7 +29,7 @@ except AttributeError:
 # while(True):
 #     pass
 API_TOKEN = open('./secrets/api.txt','r+').readline().strip().replace("\n","")
-print(API_TOKEN)
+#print(API_TOKEN)
 ids=[[451248878,'eng']]
 logging.basicConfig(level=logging.INFO)
 bot = Bot(token=API_TOKEN)
