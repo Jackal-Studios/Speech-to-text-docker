@@ -28,7 +28,8 @@ except AttributeError:
 # print (is_admin)
 # while(True):
 #     pass
-API_TOKEN = open('./secrets/api.txt','r+').readline()
+API_TOKEN = open('./secrets/api.txt','r+').readline().strip().replace("\n","")
+print(API_TOKEN)
 ids=[[451248878,'eng']]
 logging.basicConfig(level=logging.INFO)
 bot = Bot(token=API_TOKEN)
@@ -147,11 +148,11 @@ def get_keyboard():
         types.InlineKeyboardButton('English \U0001F1EC\U0001F1E7', callback_data=vote_cb.new(action='en-US'))).row(
         types.InlineKeyboardButton('Українська \U0001F1FA\U0001F1E6', callback_data=vote_cb.new(action='uk-UA')),
         types.InlineKeyboardButton('Deutsch \U0001F1E9\U0001F1EA', callback_data=vote_cb.new(action='de-DE')),
-        types.InlineKeyboardButton('中文语言 \U0001F1E8\U0001F1F3', callback_data=vote_cb.new(action='zh (cmn-Hans-CN)'))).row(
+        types.InlineKeyboardButton('中文语言 \U0001F1E8\U0001F1F3', callback_data=vote_cb.new(action='zh'))).row(
         types.InlineKeyboardButton('हिंदुस्तानी \U0001F1EE\U0001F1F3', callback_data=vote_cb.new(action='hi-IN')),
         types.InlineKeyboardButton('Español \U0001F1EA\U0001F1E6', callback_data=vote_cb.new(action='es-ES')),
         types.InlineKeyboardButton('عربى' + '\U0001F1E6\U0001F1EA', callback_data=vote_cb.new(action='ar-SA'))).row(
-        types.InlineKeyboardButton('Русский \U0001F1F7\U0001F1FA', callback_data=vote_cb.new(action='ru-Ru')),
+        types.InlineKeyboardButton('Русский \U0001F1F7\U0001F1FA', callback_data=vote_cb.new(action='ru-RU')),
         types.InlineKeyboardButton('Portugues \U0001F1F5\U0001F1F9', callback_data=vote_cb.new(action='pt-PT')),
         types.InlineKeyboardButton('Française \U0001F1F2\U0001F1EB', callback_data=vote_cb.new(action='fr-FR')),)
 
@@ -207,7 +208,7 @@ async def languageselection(message: types.Message):
     await bot.send_message(message.chat.id,"Choose language",reply_markup=get_keyboard() )
 
 
-@dp.callback_query_handler(vote_cb.filter(action=['en-US', 'uk-UA','de-DE','zh (cmn-Hans-CN)','hi-IN','es-ES','ar-SA','ru-RU','pt-PT','fr-FR']))
+@dp.callback_query_handler(vote_cb.filter(action=['en-US', 'uk-UA','de-DE','zh','hi-IN','es-ES','ar-SA','ru-RU','pt-PT','fr-FR']))
 async def callback_vote_action(query: types.CallbackQuery, callback_data: dict):
     logging.info('Got this callback data: %r', callback_data)  # callback_data contains all info from callback data
     await query.answer()  # don't forget to answer callback query as soon as possible
